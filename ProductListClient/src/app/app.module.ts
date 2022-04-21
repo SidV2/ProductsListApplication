@@ -18,6 +18,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductListEffects } from './store/effects/product-list-effects';
 import { ProductListUiComponent } from './components/product-list/product-list-ui/product-list-ui.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProductListUiComponent } from './components/product-list/product-list-u
     MatCardModule,
     MatChipsModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,15 +1,25 @@
 .Product_list_item_wrapper {
-    background-color: rgb(233, 237, 237);
     .product_list_item {
         padding: 1rem;
+        .mat-card {
+            background-color: #f0f1f2;
+            box-shadow: 5px 5px 5px 5px #cecece;
+            overflow: auto;
+        }
         .card_content {
-            margin: 1rem;
-            min-height: 200px;
-            .id, .blend_name, .origin , .variety {
+            height: 200px;
+            .id,
+            .blend_name, 
+            .origin, 
+            .variety,
+            .notes {
                 font-size: 1rem;
                 font-weight: 600;
-                padding: 0.5rem 0 0.5rem 0;
+                margin: 1rem 0 1rem 0;
             }
         }
     }
-  }
+    .Paginator_wrapper {
+        justify-content: center;
+    }
+}

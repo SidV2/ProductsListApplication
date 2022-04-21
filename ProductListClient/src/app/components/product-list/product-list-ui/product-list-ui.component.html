@@ -2,25 +2,21 @@
     <div class="row Product_list_item_wrapper">
         <div class="col-md-4 col-sm-6 col-xs-12 product_list_item" *ngFor="let product of productList">
             <mat-card>
+                <mat-card-title> ID: {{ product.id }} </mat-card-title>
                 <mat-card-content>
                     <div class="card_content">
-                        <h4 class="id">ID: {{ product.id }}</h4>
-                        <div>
-                            <span class="blend_name">
-                                Blend Name: {{ product.blend_name }}
-                            </span>
+                        <div class="blend_name">
+                            Blend Name: {{ product.blend_name }}
                         </div>
                         <div class="origin">Origin: {{ product.origin }}</div>
                         <div class="variety">Variety: {{ product.variety }}</div>
-                        <mat-chip-list class="notes">
-                            <mat-chip>{{ product.notes }} </mat-chip>
-                        </mat-chip-list>
+                        <div class="notes">Notes: {{ product.notes }}</div>
                     </div>
                 </mat-card-content>
             </mat-card>
         </div>
-        <div class="row">
-            <div *ngIf="productCount > 0" class="col-12">
+        <div class="row Paginator_wrapper">
+            <div *ngIf="productCount > 0" class="paginator">
                 <mat-paginator [length]="productCount" [pageSize]="10" [pageSizeOptions]="[10]"
                     (page)="onPageChange($event)">
                 </mat-paginator>

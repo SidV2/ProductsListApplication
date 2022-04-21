@@ -1,15 +1,14 @@
-<div class="Product_List_Head">
-    <h1 class="__title">Product List Page</h1>
-  </div>
-  <app-product-list-ui
-    *ngIf="{
+<div class="row Product_List_Head">
+  <mat-toolbar>
+    <div class="__title">Product List Application</div>
+  </mat-toolbar>
+</div>
+<app-product-list-ui *ngIf="{
       productList: productList$ | async,
       productCount: productCount$ | async
-    } as productInfo"
-    [productList]="productInfo.productList || []"
-    [productCount]="productInfo.productCount || 0"
-    (pageChangeEvent)="onPageChange($event)"
-  ></app-product-list-ui>
-  <div class="Product_List_Footer">
-    <div>By, Sidhartha Verma</div>
-  </div>
+    } as productInfo" [productList]="productInfo.productList || []" [productCount]="productInfo.productCount || 0"
+  (pageChangeEvent)="onPageChange($event)">
+</app-product-list-ui>
+<div class="Product_List_Footer">
+  <div>By, Sidhartha Verma</div>
+</div>
