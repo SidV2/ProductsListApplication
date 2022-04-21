@@ -1,14 +1,18 @@
 .Product_List_Head {
+    .mat-toolbar {
+        justify-content: center;
+        background-color: #000000;
+        color: #ffffff;
+        height: 12vh;
+    }
     .__title {
-        text-align: center;
-        padding: 10px;
         font-weight: 800;
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 }
 
 .Product_List_Footer {
-    background-color: rgb(233, 237, 237);
-    text-align: right;
+    text-align: center;
     font-size: 0.75rem;
+    color: #cacaca
 }
