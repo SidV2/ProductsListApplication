@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from './product';
+import { Product } from '../../models/product';
 import { ProductListService } from './product-list.service';
 import { Store } from '@ngrx/store';
-import { productsLoaded, productsLoadedFailure, userClickedOnPaginationNavigation } from './actions/product-list-page.actions';
+import * as ProductListPageActions from '../../store/actions/product-list-page.actions';
 import { Observable } from 'rxjs';
-import { State } from '../../models/appstate';
 
 @Component({
   selector: 'app-product-list',
@@ -34,12 +33,11 @@ export class ProductListComponent implements OnInit {
       (data) => {
         this.productList = data;
         console.log(this.productList);
-        this.store.dispatch(productsLoaded({ productsList: data }));
+        this.store.dispatch(ProductListPageActions.productsLoaded({ productsList: data }));
       },
       (error) => { //Error callback
-        this.store.dispatch(productsLoadedFailure({ productsList: [] }));
-        this.snackBar.open('API failed to get data', 'OK', {
-        });
+        this.store.dispatch(ProductListPageActions.productsLoadedFailure({ productsList: [] }));
+        this.snackBar.open('API failed to get data', 'OK', {});
       }
     );
   }
@@ -48,7 +46,7 @@ export class ProductListComponent implements OnInit {
     const startIndex = paginator.pageIndex * paginator.pageSize;
     let endIndex = startIndex + paginator.pageSize;
     if (endIndex > this.productList.length) endIndex = this.productList.length;
-    this.store.dispatch(userClickedOnPaginationNavigation({ startIndex: startIndex, endIndex: endIndex }))
+    this.store.dispatch(ProductListPageActions.userClickedOnPaginationNavigation({ startIndex: startIndex, endIndex: endIndex }))
   }
 
 }

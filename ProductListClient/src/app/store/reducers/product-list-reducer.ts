@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
-import { productsLoaded, productsLoadedFailure, userClickedOnPaginationNavigation } from "../components/product-list/actions/product-list-page.actions";
-import { Product } from "../components/product-list/product";
-import { State } from "../models/appstate";
+import * as ProductsListPageActions from "../actions/product-list-page.actions";
+import { Product } from "../../models/product";
+import { State } from "../../models/appstate";
 
 export const initialState: State = {
     productsList: [],
@@ -10,21 +10,21 @@ export const initialState: State = {
 
 export const productsReducer = createReducer(
     initialState,
-    on(productsLoaded, (state, action) => {
+    on(ProductsListPageActions.productsLoaded, (state, action) => {
         return {
             ...state,
             productsList: action.productsList,
             paginatedProductList: filterData(action.productsList, 0, 10)
         }
     }),
-    on(productsLoadedFailure, (state, action) => {
+    on(ProductsListPageActions.productsLoadedFailure, (state, action) => {
         return {
             ...state,
             productsList: action.productsList,
             paginatedProductList: action.productsList
         }
     }),
-    on(userClickedOnPaginationNavigation, (state, action) => {
+    on(ProductsListPageActions.userClickedOnPaginationNavigation, (state, action) => {
         return {
             ...state,
             paginatedProductList: filterData(state.productsList, action.startIndex, action.endIndex)
