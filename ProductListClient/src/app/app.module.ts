@@ -15,21 +15,26 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductListEffects } from './store/effects/product-list-effects';
+import { ProductListUiComponent } from './components/product-list/product-list-ui/product-list-ui.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductListUiComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({ products: productsReducer }),
+    StoreModule.forRoot({ productsState: productsReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 15,
     }),
+    EffectsModule.forRoot([ProductListEffects]),
     MatCardModule,
     MatChipsModule,
     MatSnackBarModule,

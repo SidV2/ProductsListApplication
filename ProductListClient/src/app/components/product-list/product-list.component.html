@@ -1,31 +1,15 @@
 <div class="Product_List_Head">
     <h1 class="__title">Product List Page</h1>
-</div>
-<div class="container-fluid Product_List_Wrapper">
-    <div class="row Product_list_item_wrapper">
-        <div class="col-md-4 col-sm-6 col-xs-12 product_list_item" *ngFor="let product of paginatedProductsList$ | async">
-            <mat-card>
-                <mat-card-content>
-                    <div class="card_content">
-                        <h4 class="id"> ID: {{product.id}} </h4>
-                        <div><span class="blend_name"> Blend Name: {{product.blend_name}} </span></div>
-                        <div class="origin"> Origin: {{product.origin}} </div>
-                        <div class="variety"> Variety: {{product.variety}} </div>
-                        <mat-chip-list class="notes">
-                            <mat-chip>{{product.notes}} </mat-chip>
-                        </mat-chip-list>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div class="row">
-            <div *ngIf="productList.length > 0" class="col-12">
-                <mat-paginator [length]="productList.length" [pageSize]="10" [pageSizeOptions]="[10]" (page)="onPageChange($event)">
-                </mat-paginator>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="Product_List_Footer">
+  </div>
+  <app-product-list-ui
+    *ngIf="{
+      productList: productList$ | async,
+      productCount: productCount$ | async
+    } as productInfo"
+    [productList]="productInfo.productList || []"
+    [productCount]="productInfo.productCount || 0"
+    (pageChangeEvent)="onPageChange($event)"
+  ></app-product-list-ui>
+  <div class="Product_List_Footer">
     <div>By, Sidhartha Verma</div>
-</div>
+  </div>

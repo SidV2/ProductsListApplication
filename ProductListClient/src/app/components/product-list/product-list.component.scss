@@ -7,23 +7,6 @@
     }
 }
 
-.Product_list_item_wrapper {
-    background-color: rgb(233, 237, 237);
-    .product_list_item {
-        padding: 1rem;
-        .card_content {
-            margin: 1rem;
-            min-height: 200px;
-            .id, .blend_name, .origin , .variety {
-                font-size: 1rem;
-                font-weight: 600;
-                padding: 0.5rem 0 0.5rem 0;
-            }
-        }
-    }
-    
-}
-
 .Product_List_Footer {
     background-color: rgb(233, 237, 237);
     text-align: right;
