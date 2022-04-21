@@ -22,7 +22,6 @@ export class ProductListComponent implements OnInit {
   }
 
   productList: Product[] = [];
-  paginatedProductList: Product[] = [];
   paginatedProductsList$?: Observable<Product[]>;
 
   ngOnInit(): void {
@@ -35,7 +34,6 @@ export class ProductListComponent implements OnInit {
       (data) => {
         this.productList = data;
         console.log(this.productList);
-        this.initInitialProductList();
         this.store.dispatch(productsLoaded({ productsList: data }));
       },
       (error) => { //Error callback
@@ -46,15 +44,10 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  initInitialProductList(): void {
-    this.paginatedProductList = this.productList.slice(0, 10);
-  }
-
   onPageChange(paginator: PageEvent): void {
     const startIndex = paginator.pageIndex * paginator.pageSize;
     let endIndex = startIndex + paginator.pageSize;
     if (endIndex > this.productList.length) endIndex = this.productList.length;
-    this.paginatedProductList = this.productList.slice(startIndex, endIndex);
     this.store.dispatch(userClickedOnPaginationNavigation({ startIndex: startIndex, endIndex: endIndex }))
   }
 

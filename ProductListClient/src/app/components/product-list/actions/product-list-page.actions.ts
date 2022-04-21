@@ -12,6 +12,6 @@ export const productsLoadedFailure = createAction(
 );
 
 export const userClickedOnPaginationNavigation = createAction(
-    '[Products Page] User Click next on Pagination',
+    '[Products Page] User Click on Pagination',
     props<{startIndex: number, endIndex: number}>()
 );
