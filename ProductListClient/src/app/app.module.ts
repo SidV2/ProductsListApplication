@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { productsReducer } from './reducers/product-list-reducer';
+import { productsReducer } from './store/reducers/product-list-reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 //Angular Materials Imports
