@@ -1,38 +1,36 @@
-import { createReducer, on } from "@ngrx/store";
-import * as ProductsListPageActions from "../actions/product-list-page.actions";
-import { Product } from "../../models/product";
-import { State } from "../../models/appstate";
+import { createReducer, on } from '@ngrx/store';
+import * as productListActions from '../actions/product-list-page.actions';
+import { PageIndex, Product } from '../../models/product';
+
+export interface State extends PageIndex {
+  productList: Product[];
+}
 
 export const initialState: State = {
-    productsList: [],
-    paginatedProductList: []
-}
+  productList: [],
+  startIndex: 0,
+  endIndex: 10,
+};
 
 export const productsReducer = createReducer(
-    initialState,
-    on(ProductsListPageActions.productsLoaded, (state, action) => {
-        return {
-            ...state,
-            productsList: action.productsList,
-            paginatedProductList: filterData(action.productsList, 0, 10)
-        }
-    }),
-    on(ProductsListPageActions.productsLoadedFailure, (state, action) => {
-        return {
-            ...state,
-            productsList: action.productsList,
-            paginatedProductList: action.productsList
-        }
-    }),
-    on(ProductsListPageActions.userClickedOnPaginationNavigation, (state, action) => {
-        return {
-            ...state,
-            paginatedProductList: filterData(state.productsList, action.startIndex, action.endIndex)
-        }
-    })
-)
-
-//helper functions
-function filterData(productsList: Product[], startIndex: number, endIndex: number): Product[] {
-    return productsList.slice(startIndex, endIndex);
-}
+  initialState,
+  on(productListActions.productsLoaded, (state, action) => {
+    return {
+      ...state,
+      productList: action.productsList,
+    };
+  }),
+  on(productListActions.productsLoadedFailure, (state) => {
+    return {
+      ...state,
+      productList: [],
+    };
+  }),
+  on(productListActions.userClickedOnPaginationNavigation, (state, action) => {
+    return {
+      ...state,
+      startIndex: action.startIndex,
+      endIndex: action.endIndex,
+    };
+  })
+);

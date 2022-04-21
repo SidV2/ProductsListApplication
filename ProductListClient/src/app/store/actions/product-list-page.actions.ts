@@ -1,6 +1,10 @@
 import { createAction, props } from "@ngrx/store";
 import { Product } from "../../models/product";
 
+export const productListInit = createAction(
+    '[Products Page] Init product page'
+);
+
 export const productsLoaded = createAction(
     '[Products Page] Products API Loaded Successfully',
     props<{ productsList: Product[] }>()
@@ -8,7 +12,7 @@ export const productsLoaded = createAction(
 
 export const productsLoadedFailure = createAction(
     '[Products Page] Products API Failure',
-    props<{ productsList: Product[] }>()
+    props<{ error: string }>()
 );
 
 export const userClickedOnPaginationNavigation = createAction(

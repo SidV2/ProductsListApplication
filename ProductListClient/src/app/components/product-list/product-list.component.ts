@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../../models/product';
-import { ProductListService } from './product-list.service';
-import { Store } from '@ngrx/store';
-import * as ProductListPageActions from '../../store/actions/product-list-page.actions';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { ProductListDispatcher } from 'src/app/store/dispatcher/product-list-dispatcher';
+import { PageIndex, Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-list',
@@ -14,39 +11,34 @@ import { Observable } from 'rxjs';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor(
-    private productListService: ProductListService,
-    private snackBar: MatSnackBar,
-    private store: Store<any>) {
-  }
+  destroy$ = new Subject();
+  productCount$: Observable<number> = this.productListDispatcher.productCount$;
+  productList$: Observable<Product[]> = this.productListDispatcher.productList$;
 
-  productList: Product[] = [];
-  paginatedProductsList$?: Observable<Product[]>;
+  constructor(
+    private snackBar: MatSnackBar,
+    private productListDispatcher: ProductListDispatcher) {
+  }
 
   ngOnInit(): void {
-    this.getProductsList();
-    this.paginatedProductsList$ = this.store.select((store) => store.products.paginatedProductList);
+    this.productListDispatcher.init();
+    this.subscribeError();
   }
 
-  getProductsList(): void {
-    this.productListService.getProductList().subscribe(
-      (data) => {
-        this.productList = data;
-        console.log(this.productList);
-        this.store.dispatch(ProductListPageActions.productsLoaded({ productsList: data }));
-      },
-      (error) => { //Error callback
-        this.store.dispatch(ProductListPageActions.productsLoadedFailure({ productsList: [] }));
-        this.snackBar.open('API failed to get data', 'OK', {});
-      }
-    );
+  onPageChange({ startIndex, endIndex }: PageIndex): void {
+    this.productListDispatcher.onPageChange({ startIndex, endIndex });
   }
 
-  onPageChange(paginator: PageEvent): void {
-    const startIndex = paginator.pageIndex * paginator.pageSize;
-    let endIndex = startIndex + paginator.pageSize;
-    if (endIndex > this.productList.length) endIndex = this.productList.length;
-    this.store.dispatch(ProductListPageActions.userClickedOnPaginationNavigation({ startIndex: startIndex, endIndex: endIndex }))
+  subscribeError() {
+    this.productListDispatcher.productListFailure$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((error: string) => {
+        this.snackBar.open(error, 'OK', {});
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Product } from '../../models/product';
 
 @Injectable({
@@ -7,10 +7,13 @@ import { Product } from '../../models/product';
 })
 export class ProductListService {
 
+  batchSize = 50;
+  apiURL = `https://random-data-api.com/api/coffee/random_coffee?size=${this.batchSize}`
+
   constructor(private http: HttpClient) { }
 
   getProductList() {
-    return this.http.get<Product[]>('https://random-data-api.com/api/coffee/random_coffee?size=50');
+    return this.http.get<Product[]>(this.apiURL);
   }
 
 }

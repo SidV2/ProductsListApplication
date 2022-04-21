@@ -7,3 +7,8 @@ export interface Product {
     uid: string
     variety: string
 }
+
+export interface PageIndex {
+    startIndex: number;
+    endIndex: number;
+}
