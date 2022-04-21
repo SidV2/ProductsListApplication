@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { productsReducer } from './reducers/product-list-reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 //Angular Materials Imports
 import { MatCardModule } from '@angular/material/card';
@@ -23,6 +26,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    StoreModule.forRoot({ products: productsReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 15,
+    }),
     MatCardModule,
     MatChipsModule,
     MatSnackBarModule,

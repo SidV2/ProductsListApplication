@@ -3,7 +3,7 @@
 </div>
 <div class="container-fluid Product_List_Wrapper">
     <div class="row Product_list_item_wrapper">
-        <div class="col-md-4 col-sm-12 col-xs-12 product_list_item" *ngFor="let product of paginatedProductList">
+        <div class="col-md-4 col-sm-6 col-xs-12 product_list_item" *ngFor="let product of paginatedProductsList$ | async">
             <mat-card>
                 <mat-card-content>
                     <div class="card_content">
@@ -19,7 +19,7 @@
             </mat-card>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div *ngIf="productList.length > 0" class="col-12">
                 <mat-paginator [length]="productList.length" [pageSize]="10" [pageSizeOptions]="[10]" (page)="onPageChange($event)">
                 </mat-paginator>
             </div>
