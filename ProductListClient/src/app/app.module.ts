@@ -26,7 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({ productsReducer: productsReducer }),
+    StoreModule.forRoot({ products: productsReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 15,
     }),

@@ -1,12 +1,7 @@
-import { state } from "@angular/animations";
 import { createReducer, on } from "@ngrx/store";
 import { productsLoaded, productsLoadedFailure, userClickedOnPaginationNavigation } from "../components/product-list/actions/product-list-page.actions";
 import { Product } from "../components/product-list/product";
-
-export interface State {
-    productsList: Product[],
-    paginatedProductList: Product[]
-}
+import { State } from "../models/appstate";
 
 export const initialState: State = {
     productsList: [],
@@ -37,15 +32,7 @@ export const productsReducer = createReducer(
     })
 )
 
-
-//selectors to pass data to components
-export const selectAllProducts = (state: State) => state.productsList;
-export const currentPageProducts = (state: State) => state.paginatedProductList;
-
 //helper functions
 function filterData(productsList: Product[], startIndex: number, endIndex: number): Product[] {
     return productsList.slice(startIndex, endIndex);
 }
-
-
-//
