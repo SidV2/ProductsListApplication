@@ -41,6 +41,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.destroy$.next(null);
+    this.destroy$.unsubscribe();
   }
 
   //simple experiment to verify that onpush change detection is currently working
