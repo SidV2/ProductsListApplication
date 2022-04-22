@@ -10,5 +10,6 @@
   (pageChangeEvent)="onPageChange($event)">
 </app-product-list-ui>
 <div class="Product_List_Footer">
-  <div>By, Sidhartha Verma</div>
+  <div (click)="changeExperiment()">By, Sidhartha Verma</div>
+  <span>{{changeTriggeredinParent()}}</span>
 </div>
