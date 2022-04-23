@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, take, takeUntil } from 'rxjs';
 import { ProductListDispatcher } from 'src/app/store/dispatcher/product-list-dispatcher';
 import { PageIndex, Product } from 'src/app/models/product';
 
@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
     this.productListDispatcher.onPageChange({ startIndex, endIndex });
   }
 
-  subscribeError() {
+  subscribeError(): void {
     this.productListDispatcher.productListFailure$
       .pipe(takeUntil(this.destroy$))
       .subscribe((error: string) => {

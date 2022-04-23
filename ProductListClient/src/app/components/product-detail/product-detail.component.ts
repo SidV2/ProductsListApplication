@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { product } from 'src/app/store/selectors/product-detail.selector';
+import * as ProductDetailPageActions from '../../store/actions/product-detail-page.actions'
 
 @Component({
   selector: 'app-product-detail',
@@ -18,5 +19,7 @@ export class ProductDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {}
-
-}
+  recordAction(backFromProductDetail: boolean): void {
+    this.store.dispatch(ProductDetailPageActions.productDetailBackNavigation({backFromProductDetail: backFromProductDetail}));
+  }
+ }
