@@ -1,0 +1,26 @@
+<div class="conatiner-fluid Product_Detail_Wrapper">
+    <div class="row">
+        <div class="col-8">
+            <section class="product_individual" *ngIf="product$ | async as product">
+                <mat-card>
+                    <div class="card_header">
+                        <mat-card-title> ID: {{ product.id }} </mat-card-title>
+                    </div>
+                    <mat-card-content>
+                        <div class="card_content">
+                            <div class="blend_name">
+                                Blend Name: {{ product.blend_name }}
+                            </div>
+                            <div class="origin">Origin: {{ product.origin }}</div>
+                            <div class="variety">Variety: {{ product.variety }}</div>
+                            <div class="notes">Notes: {{ product.notes }} </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <a [routerLink]="['../../']">Click here to back to product list page</a>
+    </div>
+</div>

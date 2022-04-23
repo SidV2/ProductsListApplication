@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { PageIndex, Product } from 'src/app/models/product';
 
 @Component({
@@ -17,7 +18,7 @@ export class ProductListUiComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor() {
+  constructor(private router: Router) {
     this.productList = [];
     this.productCount = 0;
   }
@@ -35,6 +36,10 @@ export class ProductListUiComponent implements OnInit {
   */
   childchNgeTrigger(): void {
     console.log("child change triggered");
+  }
+
+  openProductDetail(id: number): void {
+    this.router.navigate(['/productdetail', id]);
   }
 
 }

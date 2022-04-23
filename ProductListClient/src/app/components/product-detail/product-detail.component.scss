@@ -1,6 +1,9 @@
-.Product_list_item_wrapper {
-    .product_list_item {
-        padding: 1rem;
+.Product_Detail_Wrapper {
+    .row {
+        justify-content: center;
+        margin: 2rem;;
+    }
+    .product_individual {
         .mat-card {
             background-color: #3f51b5;
             box-shadow: 5px 5px 10px 5px #cecece;
@@ -20,8 +23,5 @@
                 margin: 1rem 0 1rem 0;
             }
         }
-    }
-    .Paginator_wrapper {
-        justify-content: center;
     }
 }

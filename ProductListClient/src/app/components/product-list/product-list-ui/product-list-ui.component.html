@@ -1,7 +1,7 @@
 <div class="container-fluid Product_List_Wrapper">
     <div class="row Product_list_item_wrapper">
         <div class="col-md-4 col-sm-6 col-xs-12 product_list_item" *ngFor="let product of productList">
-            <mat-card>
+            <mat-card (click)="openProductDetail(product.id)">
                 <div class="card_header">
                     <mat-card-title> ID: {{ product.id }} </mat-card-title>
                 </div>

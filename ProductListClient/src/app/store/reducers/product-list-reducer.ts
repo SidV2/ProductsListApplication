@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import * as productListActions from '../actions/product-list-page.actions';
+import * as productListPageActions from '../actions/product-list-page.actions';
 import { PageIndex, Product } from '../../models/product';
 
 export interface State extends PageIndex {
@@ -14,19 +14,19 @@ export const initialState: State = {
 
 export const productsReducer = createReducer(
   initialState,
-  on(productListActions.productsLoaded, (state, action) => {
+  on(productListPageActions.productsLoaded, (state, action) => {
     return {
       ...state,
       productList: action.productsList,
     };
   }),
-  on(productListActions.productsLoadedFailure, (state) => {
+  on(productListPageActions.productsLoadedFailure, (state) => {
     return {
       ...state,
       productList: [],
     };
   }),
-  on(productListActions.userClickedOnPaginationNavigation, (state, action) => {
+  on(productListPageActions.userClickedOnPaginationNavigation, (state, action) => {
     return {
       ...state,
       startIndex: action.startIndex,
