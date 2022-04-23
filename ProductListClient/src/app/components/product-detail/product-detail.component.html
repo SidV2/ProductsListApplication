@@ -1,26 +1,31 @@
-<div class="conatiner-fluid Product_Detail_Wrapper">
-    <div class="row">
-        <div class="col-8">
+<div class="container-fluid Product_Detail_Wrapper">
+    <div class="row product_content">
+        <div class="col-12">
             <section class="product_individual" *ngIf="product$ | async as product">
-                <mat-card>
-                    <div class="card_header">
-                        <mat-card-title> ID: {{ product.id }} </mat-card-title>
+                <div class="card_content">
+                    <div class="blend_name">
+                        {{ product.blend_name }}
                     </div>
-                    <mat-card-content>
-                        <div class="card_content">
-                            <div class="blend_name">
-                                Blend Name: {{ product.blend_name }}
-                            </div>
-                            <div class="origin">Origin: {{ product.origin }}</div>
-                            <div class="variety">Variety: {{ product.variety }}</div>
-                            <div class="notes">Notes: {{ product.notes }} </div>
+                    <div class="row">
+                        <div class="col col-12">
+                            <mat-card>
+                                <mat-card-content>
+                                    <div class="sample_image">
+                                        <img src="../../../assets/static/coffee.jpeg">
+                                    </div>
+                                    <div class="id"> Product ID: {{product.id}} </div>
+                                    <div class="origin">Origin: {{ product.origin }}</div>
+                                    <div class="variety">Variety: {{ product.variety }}</div>
+                                    <div class="notes">Notes: {{ product.notes }} </div>
+                                </mat-card-content>
+                            </mat-card>
                         </div>
-                    </mat-card-content>
-                </mat-card>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
-    <div class="row">
+    <div class="row product_footer_link">
         <a (click)="recordAction(true)" [routerLink]="['../../']">Click here to back to product list page</a>
     </div>
 </div>
