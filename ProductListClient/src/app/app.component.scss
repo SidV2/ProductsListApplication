@@ -1,12 +1,14 @@
 .Product_List_Head {
-    .mat-toolbar {
+    mat-toolbar {
         justify-content: center;
         background-color: #000000;
         color: #ffffff;
-        height: 12vh;
+    }
+    .mat-toolbar-row {
+        justify-content: center;
     }
     .__title {
-        font-weight: 800;
-        font-size: 2.5rem;
+        font-size: 2rem;
+        white-space: pre-wrap;
     }
 }

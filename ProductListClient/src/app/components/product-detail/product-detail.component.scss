@@ -1,27 +1,47 @@
 .Product_Detail_Wrapper {
     .row {
         justify-content: center;
-        margin: 2rem;;
     }
     .product_individual {
+        margin: 2rem;
+        text-align: center;
         .mat-card {
-            background-color: #3f51b5;
             box-shadow: 5px 5px 10px 5px #cecece;
-            overflow: auto;
-            color: #ebebeb;
             cursor: pointer;
+            overflow: auto;
+            max-width: 640px;
+            margin: 0 auto;
         }
         .card_content {
-            height: 200px;
-            .id,
-            .blend_name, 
+            .blend_name {
+                font-size: 2rem;
+                line-height: 100%;
+                font-weight: 800;
+                margin: 1rem 0 1rem 0;
+            }
+            .id {
+                font-size: 0.75rem;
+            } 
             .origin, 
             .variety,
             .notes {
                 font-size: 1rem;
+                line-height: 100%;
                 font-weight: 600;
                 margin: 1rem 0 1rem 0;
             }
+            .sample_image {
+                margin: 0 auto;
+                img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    box-shadow: 5px 5px 10px 5px #cecece;
+                }
+            }
         }
     }
+    .product_footer_link {
+        text-align: center;
+    }
 }
+
