@@ -4,6 +4,14 @@ import { catchError, map, of, switchMap } from 'rxjs';
 import { ProductListService } from '../../data-services/product-list/product-list.service';
 import * as ProductListActions from '../actions/product-list-page.actions';
 
+/**
+ * @author Sidhartha Verma
+ * Effect listening to action of type produtc list init
+ * Upon receiving the action calls getProductList services 
+ * which in turn calls the product list API
+ * Retturns observable on either success or failure which is 
+ * handled in component
+ */
 @Injectable()
 export class ProductListEffects {
   $init = createEffect(() =>

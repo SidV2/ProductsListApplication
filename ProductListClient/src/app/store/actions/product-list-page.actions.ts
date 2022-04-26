@@ -1,6 +1,10 @@
 import { createAction, props } from "@ngrx/store";
 import { Product } from "../../models/product";
 
+/**
+ * @author Sidhartha Verma
+ * actions of product list component
+ */
 export const productListInit = createAction(
     '[Products Page] Init product page'
 );
